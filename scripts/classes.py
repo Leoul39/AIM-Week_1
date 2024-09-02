@@ -1,5 +1,7 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import talib as ta
 import numpy as np
 
@@ -39,8 +41,20 @@ class FinancialAnalyzer:
         df['MACD'] = macd
         df['MACD_Signal'] = macd_signal
         return df
-    def plot_macd(self, df):
-        fig = px.line(df, x=df.index, y=['MACD', 'MACD_Signal'], title='Moving Average Convergence Divergence')
+    def plot_sma(self, data):
+        fig = px.line(data, x=data.index, y='SMA', title='Simple Moving Average (SMA)')
+        fig.show()
+
+    def plot_rsi(self, data):
+        fig = px.line(data, x=data.index, y='RSI', title='Relative Strength Index (RSI)')
+        fig.show()
+
+    def plot_ema(self, data):
+        fig = px.line(data, x=data.index, y= 'EMA', title='Exponential Moving Average (EMA)')
+        fig.show()
+
+    def plot_macd(self, data):
+        fig = px.line(data, x=data.index, y=['MACD', 'MACD_Signal'], title='Moving Average Convergence Divergence (MACD)')
         fig.show()
         
 
