@@ -1,7 +1,5 @@
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+import matplotlib.pyplot as plt
 import talib as ta
 import numpy as np
 
@@ -42,20 +40,48 @@ class FinancialAnalyzer:
         df['MACD_Signal'] = macd_signal
         return df
     def plot_sma(self, data):
-        fig = px.line(data, x=data.index, y='SMA', title='Simple Moving Average (SMA)')
-        fig.show()
+        fig,ax=plt.subplots(2,figsize=(20,6))
+        ax[0].plot(data['date'],data['Close'])
+        ax[0].set_title('Closing Price')
+        ax[1].plot(data['date'],data['SMA'])
+        ax[1].set_title('Simple Moving Average over time ')
+        plt.tight_layout()
+        plt.legend()
+        plt.show()
+
 
     def plot_rsi(self, data):
-        fig = px.line(data, x=data.index, y='RSI', title='Relative Strength Index (RSI)')
-        fig.show()
+        fig,ax=plt.subplots(2,figsize=(20,6))
+        ax[0].plot(data['date'],data['Close'])
+        ax[0].set_title('Closing Price')
+        ax[1].plot(data['date'],data['RSI'])
+        ax[1].set_title('Relative Strength Index over time ')
+        plt.tight_layout()
+        plt.legend()
+        plt.show()
 
     def plot_ema(self, data):
-        fig = px.line(data, x=data.index, y= 'EMA', title='Exponential Moving Average (EMA)')
-        fig.show()
+        fig,ax=plt.subplots(2,figsize=(20,6))
+        ax[0].plot(data['date'],data['Close'])
+        ax[0].set_title('Closing Price')
+        ax[1].plot(data['date'],data['EMA'])
+        ax[1].set_title('Exponential Moving Average over time ')
+        plt.tight_layout()
+        plt.legend()
+        plt.show()
+
 
     def plot_macd(self, data):
-        fig = px.line(data, x=data.index, y=['MACD', 'MACD_Signal'], title='Moving Average Convergence Divergence (MACD)')
-        fig.show()
+        fig,ax=plt.subplots(2,figsize=(20,6))
+        ax[0].plot(data['date'],data['Close'])
+        ax[0].set_title('Closing Price')
+        ax[1].plot(data['date'],data['MACD'],label='MACD')
+        ax[1].plot(data['date'],data['MACD_Signal'],label='MACD Signal line')
+        ax[1].set_title('Moving Average Convergence Divergence over time ')
+        plt.tight_layout()
+        plt.legend()
+        plt.show()
+
         
 
 
